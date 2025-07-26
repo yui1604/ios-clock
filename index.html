@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>時計とカレンダー</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="box">
+    <h1>現在の時刻</h1>
+    <div id="clock">--:--:--</div>
+    <div id="date">----年--月--日（--）</div>
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const days = ['日', '月', '火', '水', '木', '金', '土'];
+
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+
+      const year = now.getFullYear();
+      const month = now.getMonth() + 1;
+      const date = now.getDate();
+      const day = days[now.getDay()];
+
+      document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+      document.getElementById('date').textContent = `${year}年${month}月${date}日（${day}）`;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock(); // 初期表示
+  </script>
+</body>
+</html>
